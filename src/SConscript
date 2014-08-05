@@ -1,0 +1,39 @@
+import os
+
+Import('env')
+Import('envPy')
+Import('installPrefix')
+
+ProjectVersion = "0.0.1"
+
+env.Append(
+    SHLIBVERSION = ProjectVersion
+)
+
+helloWorld = env.SharedLibrary(
+        'helloWorld',
+        Glob( '*.cpp' )
+)
+
+sHelloWorld = env.StaticLibrary(
+	'sHelloWorld',
+	Glob( '*.cpp' )
+)
+
+envPy.SharedLibrary(
+	'pyHelloWorld',
+	source='helloWorld.i',
+	LIBS = [
+		sHelloWorld
+	]
+)
+
+env.Command( os.path.join(installPrefix, "lib/python2.7/site-package/helloworld"), [], Touch("__init__.py") )
+
+env.InstallVersionedLib(os.path.join(installPrefix, "lib"), helloWorld)
+env.Install(os.path.join(installPrefix, "lib"), sHelloWorld)
+
+env.Alias("install", env.Install(os.path.join(installPrefix, "include"), Glob('*.hpp')))
+
+
+env.Alias("install", env.Install(os.path.join(installPrefix, "lib/python2.7/site-package/helloworld"), 'helloworld.py'))
