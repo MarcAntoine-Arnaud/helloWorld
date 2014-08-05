@@ -1,0 +1,11 @@
+Source: helloworld
+Section: sectionName
+Priority: optional
+Maintainer: Marc-Antoine ARNAUD <arnaud.marcantoine@gmail.com>
+Build-Depends: debhelper (>= 4.1.16), scons, gcc, g++, swig, swig2.0, python-dev
+
+Package: helloworld
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: test of packaging
+ Testing packages using python binding and binaries.

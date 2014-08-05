@@ -28,6 +28,8 @@ envPy.SharedLibrary(
 	]
 )
 
+Export('sHelloWorld')
+
 env.Command( os.path.join(installPrefix, "lib/python2.7/site-package/helloworld"), [], Touch("__init__.py") )
 
 env.InstallVersionedLib(os.path.join(installPrefix, "lib"), helloWorld)

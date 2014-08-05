@@ -5,7 +5,7 @@ HelloWorld::HelloWorld()
 {
 }
 
-void print()
+void HelloWorld::print()
 {
 	std::cout << "Hello World !" << std::endl;
 }

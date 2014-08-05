@@ -1,0 +1,11 @@
+
+Import('env')
+Import('sHelloWorld')
+
+env.Program(
+	'helloworld',
+	Glob("*.cpp"),
+	LIBS=[
+		sHelloWorld,
+	]
+)
